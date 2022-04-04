@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>LED Control</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+	<h1>LED Control</h1>
+	<form method="POST"> 
+		<input type="submit" name="led" value="on" />
+		<input type="submit" name="led" value="off" />
+	</form>
+	<form method="POST">
+		<h1>LCD Display</h1>
+		<textarea id="lcd_text" name="lcd_text" rows="2" cols="16"></textarea>
+		<input type="color" id="lcd_color" name="lcd_color" /><br>
+		<input type="submit" value="submit" />
+	</form>
+	<h1>DHT11 Sensor</h1>
+	<div id="dht11">---</div>
+</body>
+<script type="text/javascript">
+	async function refreshDHT() {
+		const response = await fetch("/dht11")
+		var data = await response.text();
+		document.getElementById("dht11").innerText = data;
+		let t = setTimeout(function(){refreshDHT()},3000);
+		console.log("READ");
+	}
+	refreshDHT();
+</script>
+</html>
+
