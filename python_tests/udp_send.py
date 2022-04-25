@@ -2,7 +2,7 @@
 
 import socket
 
-UDP_IP = "localhost"
+UDP_IP = "172.16.23.189"
 UDP_PORT = 5000
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
